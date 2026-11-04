@@ -4,6 +4,7 @@ from io import BytesIO
 from pathlib import Path
 import re
 import tempfile
+import inspect
 
 import numpy as np
 import soundfile as sf
@@ -26,15 +27,24 @@ st.warning(
 st.info(
     "This creates a reusable local voice profile from your reference recording. "
     "It does not fine-tune model weights: Chatterbox uses the reference clip at generation time. "
+    "The app detects the installed Chatterbox API: the published PyPI 0.1.7 package uses multilingual V2; "
+    "a newer source installation with the t3_model selector can use V3. "
     "Your original audio-enhancement app remains separate."
 )
 
-@st.cache_resource(show_spinner="Loading Chatterbox Multilingual V3…")
+@st.cache_resource(show_spinner="Loading Chatterbox Multilingual Hindi model…")
 def load_model():
     import torch
     from chatterbox.mtl_tts import ChatterboxMultilingualTTS
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    return ChatterboxMultilingualTTS.from_pretrained(device=device, t3_model="v3")
+    loader = ChatterboxMultilingualTTS.from_pretrained
+
+    # The published PyPI 0.1.7 package exposes only the V2 multilingual
+    # loader; newer upstream source exposes the optional t3_model selector.
+    # Detect the installed API instead of passing an unsupported keyword.
+    if "t3_model" in inspect.signature(loader).parameters:
+        return loader(device=device, t3_model="v3")
+    return loader(device=device)
 
 def read_reference(uploaded) -> tuple[np.ndarray, int]:
     raw, sr = sf.read(BytesIO(uploaded.getvalue()), dtype="float32", always_2d=True)
