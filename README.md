@@ -81,13 +81,14 @@ Processing happens locally. Uploaded audio is held in the app's memory for the c
 
 ## Experimental voice cloning (separate app)
 
-The repository now includes a separate Chatterbox Multilingual V3 reference-based voice-cloning experiment. It does not alter the original audio-enhancement app.
+The repository now includes a separate Chatterbox Multilingual reference-based voice-cloning experiment. It does not alter the original audio-enhancement app. The app detects the installed Chatterbox API: PyPI release 0.1.7 uses the V2 multilingual checkpoint, while newer upstream source supports the optional V3 checkpoint selector.
 
 **Hardware and compatibility notes**
 - Use Python 3.11 (64-bit) for this experimental engine. The upstream Chatterbox project documents Python 3.11 as its tested environment.
 - The engine automatically selects CUDA if available; otherwise it runs on CPU. The Windows launcher installs CPU-only PyTorch to avoid downloading CUDA packages. CPU generation can be slow, especially for long scripts.
 - The upstream project documents Debian 11 / Python 3.11 as its tested setup; Windows CPU use is an experimental deployment and may require dependency troubleshooting.
 - The first generation downloads the model weights and requires an internet connection. Later runs can use the cached model.
+- With `chatterbox-tts==0.1.7` installed from PyPI, the app uses multilingual V2 because that release's `from_pretrained()` does not accept `t3_model`. It automatically selects V3 only when the installed upstream API exposes that parameter.
 - This is zero-shot/reference-based cloning, not training a new model. A clean single-speaker reference is best; the app uses up to the first 18 seconds.
 - Roman Hinglish is experimental. Devanagari Hindi is the recommended first pronunciation test; mixed English names and cricket terms should be checked manually.
 
