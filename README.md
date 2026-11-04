@@ -15,6 +15,7 @@ A local, CPU-friendly audio enhancement workbench for making AI-generated Hindi/
 
 - Windows 10/11
 - Python 3.14 (64-bit recommended)
+- For Python 3.13 and newer, `audioop-lts` is installed automatically to restore the audio operation compatibility needed by the current pydub release.
 - 4 GB RAM minimum; 16 GB recommended
 - FFmpeg installed and available on PATH for MP3/M4A decoding
 
