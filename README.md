@@ -100,6 +100,7 @@ From the extracted repository folder, double-click `launch_voice_clone.bat`, or 
 ```powershell
 py -3.11 -m venv .venv-clone
 .\.venv-clone\Scripts\python.exe -m pip install --upgrade pip
+.\.venv-clone\Scripts\python.exe -m pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
 .\.venv-clone\Scripts\python.exe -m pip install -r requirements-voice-clone.txt
 .\.venv-clone\Scripts\python.exe -m streamlit run voice_clone_app.py
 ```
