@@ -14,32 +14,41 @@ A local, CPU-friendly audio enhancement workbench for making AI-generated Hindi/
 ## Requirements
 
 - Windows 10/11
-- Python 3.10 or 3.11
+- Python 3.14 (64-bit recommended)
 - 4 GB RAM minimum; 16 GB recommended
 - FFmpeg installed and available on PATH for MP3/M4A decoding
 
-## Install
+## Windows setup (Git is optional)
+
+You do **not** need Git to try the app.
+
+1. Install Python 3.14 from the official [Python 3.14.10 Windows 64-bit installer](https://www.python.org/ftp/python/3.14.10/python-3.14.10-amd64.exe).
+2. During installation, tick **Add python.exe to PATH**, then choose **Install Now**.
+3. Download the project ZIP from [PreetVoice on GitHub](https://github.com/jollyjattjunktion-beep/preetvoice/archive/refs/heads/main.zip).
+4. Extract the ZIP. Open PowerShell in the extracted `preetvoice-main` folder.
+5. Run:
 
 ```powershell
-py -3.11 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-If PowerShell blocks activation, run:
-```powershell
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-.\.venv\Scripts\Activate.ps1
-```
-
-## Run
-
-```powershell
-streamlit run app.py
+py -3.14 --version
+py -3.14 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --upgrade pip
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
 Open the local URL shown in the terminal (normally http://localhost:8501).
+
+## Alternative: clone with Git
+
+If Git is already installed, you can use:
+
+```powershell
+git clone https://github.com/jollyjattjunktion-beep/preetvoice.git
+cd preetvoice
+py -3.14 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m streamlit run app.py
+```
 
 ## Suggested starting settings for cricket commentary
 
