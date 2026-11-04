@@ -85,7 +85,8 @@ The repository now includes a separate Chatterbox Multilingual V3 reference-base
 
 **Hardware and compatibility notes**
 - Use Python 3.11 (64-bit) for this experimental engine. The upstream Chatterbox project documents Python 3.11 as its tested environment.
-- The engine automatically selects CUDA if available; otherwise it runs on CPU. CPU generation can be slow, especially for long scripts.
+- The engine automatically selects CUDA if available; otherwise it runs on CPU. The Windows launcher installs CPU-only PyTorch to avoid downloading CUDA packages. CPU generation can be slow, especially for long scripts.
+- The upstream project documents Debian 11 / Python 3.11 as its tested setup; Windows CPU use is an experimental deployment and may require dependency troubleshooting.
 - The first generation downloads the model weights and requires an internet connection. Later runs can use the cached model.
 - This is zero-shot/reference-based cloning, not training a new model. A clean single-speaker reference is best; the app uses up to the first 18 seconds.
 - Roman Hinglish is experimental. Devanagari Hindi is the recommended first pronunciation test; mixed English names and cricket terms should be checked manually.
