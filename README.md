@@ -105,7 +105,7 @@ py -3.11 -m venv .venv-clone
 .\.venv-clone\Scripts\python.exe -m streamlit run voice_clone_app.py --server.port 8502
 ```
 
-The clone app runs on http://localhost:8502 so it can stay separate from the original enhancement app on port 8501. The launcher installs Chatterbox without its optional package dependencies, then installs the Hindi/English app dependencies explicitly. It omits spacy-pkuseg, which Chatterbox only uses for Chinese word segmentation; the upstream tokenizer skips that feature when the package is absent. This avoids compiling pkuseg with Visual C++ on Windows. Stop the original PreetVoice app first if it is already using port 8501, or launch the clone app on another port:
+The clone app runs on http://localhost:8502 so it can stay separate from the original enhancement app on port 8501. The launcher installs CPU-only PyTorch 2.6.0 and torchaudio 2.6.0 (the versions required by Chatterbox 0.1.7 on Python 3.11), installs Chatterbox without its optional package dependencies, then installs the Hindi/English app dependencies explicitly. It omits spacy-pkuseg, which Chatterbox only uses for Chinese word segmentation; the upstream tokenizer skips that feature when the package is absent. This avoids compiling pkuseg with Visual C++ on Windows. Stop the original PreetVoice app first if it is already using port 8501, or launch the clone app on another port:
 
 ```powershell
 .\.venv-clone\Scripts\python.exe -m streamlit run voice_clone_app.py --server.port 8502
