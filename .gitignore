@@ -11,3 +11,5 @@ outputs/
 *.flac
 *.m4a
 .DS_Store
+
+voice_profiles/
