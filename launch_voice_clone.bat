@@ -16,6 +16,7 @@ if not exist ".venv-clone\Scripts\python.exe" (
 
 ".venv-clone\Scripts\python.exe" -m pip install --upgrade pip
 ".venv-clone\Scripts\python.exe" -m pip install torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+".venv-clone\Scripts\python.exe" -m pip install "setuptools==80.10.2"
 ".venv-clone\Scripts\python.exe" -m pip install "numpy==1.26.4" cython
 ".venv-clone\Scripts\python.exe" -m pip install "chatterbox-tts==0.1.7" --no-deps
 ".venv-clone\Scripts\python.exe" -m pip install -r requirements-voice-clone.txt
