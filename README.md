@@ -102,10 +102,10 @@ py -3.11 -m venv .venv-clone
 .\.venv-clone\Scripts\python.exe -m pip install --upgrade pip
 .\.venv-clone\Scripts\python.exe -m pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
 .\.venv-clone\Scripts\python.exe -m pip install -r requirements-voice-clone.txt
-.\.venv-clone\Scripts\python.exe -m streamlit run voice_clone_app.py
+.\.venv-clone\Scripts\python.exe -m streamlit run voice_clone_app.py --server.port 8502
 ```
 
-Open http://localhost:8501 if Streamlit does not open a browser automatically. Stop the original PreetVoice app first if it is already using port 8501, or launch the clone app on another port:
+The clone app runs on http://localhost:8502 so it can stay separate from the original enhancement app on port 8501. Stop the original PreetVoice app first if it is already using port 8501, or launch the clone app on another port:
 
 ```powershell
 .\.venv-clone\Scripts\python.exe -m streamlit run voice_clone_app.py --server.port 8502
