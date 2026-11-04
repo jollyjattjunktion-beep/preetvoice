@@ -3,4 +3,5 @@ numpy>=1.26,<3
 scipy>=1.11,<2
 soundfile>=0.12,<1
 pydub>=0.25,<1
+audioop-lts>=0.2.2; python_version >= "3.13"
 PyYAML>=6,<7
