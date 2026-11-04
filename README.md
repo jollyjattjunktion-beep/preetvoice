@@ -77,3 +77,47 @@ Processing happens locally. Uploaded audio is held in the app's memory for the c
 2. Presets for normal commentary, excitement, and calm analysis.
 3. Optional silence and pause analysis without changing the speaker's identity.
 4. Batch processing for match scripts.
+
+
+## Experimental voice cloning (separate app)
+
+The repository now includes a separate Chatterbox Multilingual V3 reference-based voice-cloning experiment. It does not alter the original audio-enhancement app.
+
+**Hardware and compatibility notes**
+- Use Python 3.11 (64-bit) for this experimental engine. The upstream Chatterbox project documents Python 3.11 as its tested environment.
+- The engine automatically selects CUDA if available; otherwise it runs on CPU. CPU generation can be slow, especially for long scripts.
+- The first generation downloads the model weights and requires an internet connection. Later runs can use the cached model.
+- This is zero-shot/reference-based cloning, not training a new model. A clean single-speaker reference is best; the app uses up to the first 18 seconds.
+- Roman Hinglish is experimental. Devanagari Hindi is the recommended first pronunciation test; mixed English names and cricket terms should be checked manually.
+
+### Windows setup
+
+Install Python 3.11 (64-bit) alongside any existing Python version. Do not remove or replace the existing PreetVoice environment.
+
+From the extracted repository folder, double-click `launch_voice_clone.bat`, or run:
+
+```powershell
+py -3.11 -m venv .venv-clone
+.\.venv-clone\Scripts\python.exe -m pip install --upgrade pip
+.\.venv-clone\Scripts\python.exe -m pip install -r requirements-voice-clone.txt
+.\.venv-clone\Scripts\python.exe -m streamlit run voice_clone_app.py
+```
+
+Open http://localhost:8501 if Streamlit does not open a browser automatically. Stop the original PreetVoice app first if it is already using port 8501, or launch the clone app on another port:
+
+```powershell
+.\.venv-clone\Scripts\python.exe -m streamlit run voice_clone_app.py --server.port 8502
+```
+
+Then open http://localhost:8502.
+
+### Expressive delivery presets
+
+- Normal commentary: restrained expressiveness and conversational pacing.
+- Boundary excitement: stronger emphasis and energetic delivery.
+- Wicket drama: more dramatic emphasis with deliberate phrase pauses.
+- Pre-match analysis: calmer, measured delivery.
+
+The app splits text at punctuation and inserts short pauses between phrases. These are timing pauses, not synthesized inhalation sounds. Chatterbox's exaggeration and CFG controls shape vocal expressiveness and pacing; they cannot guarantee perfect emotion or pronunciation for every Roman Hinglish word.
+
+Only clone a voice you own or have explicit permission to use. Generated audio remains synthetic and should not be presented as an actual live human broadcast.
