@@ -16,7 +16,8 @@ if not exist ".venv-clone\Scripts\python.exe" (
 
 ".venv-clone\Scripts\python.exe" -m pip install --upgrade pip
 ".venv-clone\Scripts\python.exe" -m pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu
-".venv-clone\Scripts\python.exe" -m pip install -r requirements-voice-clone.txt
+".venv-clone\Scripts\python.exe" -m pip install "numpy==1.26.4" cython
+".venv-clone\Scripts\python.exe" -m pip install --no-build-isolation -r requirements-voice-clone.txt
 ".venv-clone\Scripts\python.exe" -m streamlit run voice_clone_app.py --server.port 8502
 
 pause
