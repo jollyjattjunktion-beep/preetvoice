@@ -1,0 +1,9 @@
+audio:
+  target_sample_rate: 48000
+  highpass_hz: 75
+  lowpass_hz: 15000
+  target_lufs: -16.0
+  true_peak_db: -1.5
+  default_clarity: 35
+  default_warmth: 15
+  default_compression: 25
