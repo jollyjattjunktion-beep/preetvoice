@@ -131,7 +131,7 @@ with st.sidebar:
 
 reference = st.file_uploader(
     "1. Upload your reference voice (WAV recommended)",
-    type=["wav", "flac", "ogg", "mp3", "m4a"],
+    type=["wav", "flac", "ogg"],
 )
 reference_language = st.selectbox(
     "Reference recording language",
